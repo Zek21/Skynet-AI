@@ -8,21 +8,36 @@ Implements the full architecture from the 2024-2026 research frontier.
 
 ## What is in this repository
 
-This is a **research repository**. It documents the architecture, design decisions and
-measured results of a working private system; it is **not** a distribution of that
-system's source.
+This repository remains a **curated public surface** of the larger private Skynet system.
+It includes the research architecture and, as of the v0.3.5 release, a runnable public
+publish-safety CLI plus the narrowly scoped connector/CLI interfaces required to validate
+that release. The private orchestration runtime, account state, credentials, browser
+profiles, and unrelated implementation remain private.
 
-**Public here:** this README (architecture + module map), `SECURITY.md`, `LICENSE`,
-`requirements.txt`, `docs/SEARCHABILITY.md`, and `data/paper_final_checklist.md`.
+**Public here:** this README, `SECURITY.md`, `LICENSE`, dependency and searchability
+metadata, the `Skynet/cli/` distribution, its release-safety tools/tests, and the declared
+public connector interface files. `data/skynet_public_surface.json` is the canonical
+boundary for what may be published.
 
-**Not public:** the implementation — the capture pipeline, cognitive layer, Chrome
-bridge, orchestration/fleet tooling and test suite. Those live in a private working tree.
-Paths referenced in the sections below describe that internal layout so the architecture
-can be read precisely; **they are not files you will find in this clone.**
+### Install the public CLI
 
-There is therefore no build or run step to follow here, and nothing to install. If you are
-looking for something runnable, see the Contact section — please don't file issues asking
-why a path is missing.
+Requirements are Node.js 18+ and Python 3.10+.
+
+```sh
+npm i -g @zek21/skynet-cli
+skynet --version
+skynet --help
+```
+
+The public CLI provides redacted provider-auth inventory, release scanning, npm package
+validation, and a fail-closed public-boundary guard. Fleet/orchestration commands still
+require the private runtime and fail explicitly when it is absent. See
+`Skynet/cli/README.md` for command details.
+
+**Not public:** the private capture/cognitive implementation, fleet orchestration state,
+credentials, social/browser account data, and machine-specific runtime state. Architecture
+paths later in this README may therefore describe private components that are not present
+in this clone.
 
 ## System Architecture
 

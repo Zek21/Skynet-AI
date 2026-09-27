@@ -1,0 +1,45 @@
+{
+  "name": "@zek21/skynet-cli",
+  "version": "0.3.5",
+  "description": "Skynet AI CLI — standalone publish-safety toolkit with redacted provider auth inventory and release gates.",
+  "bin": {
+    "skynet": "bin/skynet.js"
+  },
+  "scripts": {
+    "sync-runtime": "node sync-runtime.mjs",
+    "test": "node --test test/*.test.cjs",
+    "prepack": "node sync-runtime.mjs --check",
+    "postinstall": "node install.cjs"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.10"
+  },
+  "type": "commonjs",
+  "author": "Skynet AI",
+  "license": "MIT",
+  "homepage": "https://github.com/Zek21/Skynet-AI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zek21/Skynet-AI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Zek21/Skynet-AI/issues"
+  },
+  "keywords": [
+    "cli",
+    "skynet",
+    "publish-safety",
+    "release-gate",
+    "secret-scanning",
+    "oauth-inventory"
+  ],
+  "files": [
+    "bin/skynet.js",
+    "cli-wrapper.cjs",
+    "install.cjs",
+    "runtime/",
+    "README.md",
+    "LICENSE"
+  ]
+}

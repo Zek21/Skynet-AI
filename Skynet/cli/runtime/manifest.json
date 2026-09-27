@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "algorithm": "sha256",
+  "files": {
+    "skynet_provider_oauth.py": "c0201c0e6089cb48f88f1510810d7e1be30a306c8106d830561a42cb2b94b7d3",
+    "skynet_public_release_gate.py": "746113aea69f81258069a6ee7f62bd9ef2694c8624a89534e20a2a7b2ac65fd3",
+    "skynet_npm_publish_gate.py": "1f325dbc8cb62b754f47b40b095e9c63efce7fae4844e6127b8f4a7e62675b65",
+    "skynet_publish_boundary_guard.py": "e76fdb13b4bc8d49fdb4d07c23bb070116ff72a54fbb96b2323e8345bfabf8ef"
+  }
+}

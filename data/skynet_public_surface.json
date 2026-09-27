@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "policy": "curated-public",
+  "baseline": "origin/master",
+  "comment": "Seeded from the published tree via `git ls-tree -r --name-only origin/master`, never from the working branch or `git ls-files`. Additional entries are limited to files explicitly named public by .gitignore and the release-boundary files intentionally slated for public release.",
+  "entries": [
+    {
+      "pattern": ".github/FUNDING.yml",
+      "reason": "Already published on origin/master as public project funding metadata."
+    },
+    {
+      "pattern": ".gitignore",
+      "reason": "Already published on origin/master as public repository ignore policy."
+    },
+    {
+      "pattern": "LICENSE",
+      "reason": "Already published on origin/master as the public project license."
+    },
+    {
+      "pattern": "README.md",
+      "reason": "Already published on origin/master as the public project overview."
+    },
+    {
+      "pattern": "SECURITY.md",
+      "reason": "Already published on origin/master as the public security policy."
+    },
+    {
+      "pattern": "data/paper_final_checklist.md",
+      "reason": "Already published on origin/master as the public paper checklist."
+    },
+    {
+      "pattern": "docs/SEARCHABILITY.md",
+      "reason": "Already published on origin/master as public searchability documentation."
+    },
+    {
+      "pattern": "requirements.txt",
+      "reason": "Already published on origin/master as public dependency metadata."
+    },
+    {
+      "pattern": ".gitattributes",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": ".ignore",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": ".rgignore",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": ".geminiignore",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "CLAUDE.md",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "screenmemory-vsix/src/cli/cliBroker.ts",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "screenmemory-vsix/src/cli/cliBrokerCommon.ts",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "screenmemory-vsix/src/providers/geminiCdp.ts",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "screenmemory-vsix/dist/cli/cliBroker.js",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "screenmemory-vsix/dist/cli/cliBroker.js.map",
+      "reason": "Explicitly named public in .gitignore's curated whitelist."
+    },
+    {
+      "pattern": "Skynet/cli/**",
+      "reason": "Intended for public release: this is the vetted npm CLI distribution component."
+    },
+    {
+      "pattern": "data/skynet_public_release_allowlist.json",
+      "reason": "Intended for public release as the reason-bearing exception policy for the public release scanner."
+    },
+    {
+      "pattern": "data/skynet_public_surface.json",
+      "reason": "Intended for public release as the canonical curated-public boundary declaration."
+    },
+    {
+      "pattern": "tools/skynet_public_release_gate.py",
+      "reason": "Intended for public release as the credential, privacy, and portability scanner."
+    },
+    {
+      "pattern": "tools/skynet_npm_publish_gate.py",
+      "reason": "Intended for public release as the npm package-boundary verifier."
+    },
+    {
+      "pattern": "tools/skynet_provider_oauth.py",
+      "reason": "Intended for public release as the credential-safe provider OAuth helper used by the CLI release."
+    },
+    {
+      "pattern": "tools/skynet_publish_boundary_guard.py",
+      "reason": "Intended for public release as the canonical pre-push curated-surface enforcement tool."
+    },
+    {
+      "pattern": "tests/test_skynet_public_release_gate.py",
+      "reason": "Intended for public release as regression coverage for the public release scanner."
+    },
+    {
+      "pattern": "tests/test_skynet_npm_publish_gate.py",
+      "reason": "Intended for public release as regression coverage for the npm package boundary."
+    },
+    {
+      "pattern": "tests/test_skynet_provider_oauth.py",
+      "reason": "Intended for public release as regression coverage for credential-safe OAuth behavior."
+    },
+    {
+      "pattern": "tests/test_skynet_publish_boundary_guard.py",
+      "reason": "Intended for public release as regression coverage for the curated-public push boundary."
+    }
+  ]
+}

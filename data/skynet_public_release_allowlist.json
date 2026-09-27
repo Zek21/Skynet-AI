@@ -1,0 +1,86 @@
+{
+  "tests/test_skynet_todo_memory.py": [
+    {
+      "rule": "openai_or_anthropic_token",
+      "reason": "Synthetic token fixture verifies that persisted TODO-memory content is redacted."
+    }
+  ],
+  "tests/test_skynet_public_release_gate.py": [
+    {
+      "rule": "openai_or_anthropic_token",
+      "reason": "Synthetic token fixtures verify BLOCK classification and output redaction."
+    },
+    {
+      "rule": "github_pat",
+      "reason": "Synthetic GitHub PAT fixtures verify BLOCK classification and allowlist suppression."
+    },
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Synthetic private-path fixture verifies BLOCK classification."
+    },
+    {
+      "rule": "third_party_email",
+      "reason": "Synthetic e-mail fixtures verify third-party privacy classification."
+    }
+  ],
+  "tests/test_skynet_npm_publish_gate.py": [
+    {
+      "rule": "openai_or_anthropic_token",
+      "reason": "Synthetic token fixture verifies the npm tarball secret scanner."
+    },
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Synthetic private-path fixture verifies the npm tarball scanner."
+    }
+  ],
+  "screenmemory-vsix/src/cli/cliServer.ts": [
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Protected VSIX source is outside the explicitly authorized Round 4 edit scope."
+    },
+    {
+      "rule": "private_path_c_users",
+      "reason": "Protected VSIX source is outside the explicitly authorized Round 4 edit scope."
+    }
+  ],
+  "screenmemory-vsix/dist/cli/cliServer.js": [
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Generated VSIX output is protected and must be rebuilt with its source in a separately authorized change."
+    },
+    {
+      "rule": "private_path_c_users",
+      "reason": "Generated VSIX output is protected and must be rebuilt with its source in a separately authorized change."
+    }
+  ],
+  "screenmemory-vsix/src/test/suite/skynet.test.ts": [
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Protected VSIX test source is outside the explicitly authorized Round 4 edit scope."
+    }
+  ],
+  "screenmemory-vsix/dist/test/suite/skynet.test.js": [
+    {
+      "rule": "private_path_d_prospects",
+      "reason": "Generated VSIX test output is protected and must be rebuilt with its source in a separately authorized change."
+    }
+  ],
+  "tools/skynet_mission_control.py": [
+    {
+      "rule": "openai_or_anthropic_token",
+      "reason": "Synthetic provider-key fixtures exercise Mission Control redaction."
+    },
+    {
+      "rule": "github_pat",
+      "reason": "Synthetic GitHub PAT fixture exercises Mission Control redaction."
+    },
+    {
+      "rule": "google_api_key",
+      "reason": "Synthetic Google API-key fixture exercises Mission Control redaction."
+    },
+    {
+      "rule": "aws_access_key",
+      "reason": "AWS documentation example is a redaction-test fixture, not a credential."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "cliEntry": "tools/skynet_cli.py",
+  "replEntry": "tools/skynet_repl.py",
+  "updateEntry": "tools/skynet_update.py",
+  "skillRegistry": "data/skynet_skill_registry.json",
+  "busUrl": "http://localhost:8420",
+  "vsixUrl": "http://localhost:8419",
+  "identity": "Prophet",
+  "routePolicy": "truth-first",
+  "providerChain": [
+    "gemini"
+  ],
+  "defaultModel": "gemini-3.1-pro-preview",
+  "defaultCodexModel": "gpt-5.6-sol",
+  "defaultClaudeModel": "gemini-3.1-pro-preview",
+  "soul": "Gemini 3.1 Pro Preview is the locked operational lane. Claude and Codex are advisory or diagnostic only when explicitly invoked and logged back through Skynet.",
+  "priorityNote": "Chain order is truth-first and Gemini-only for the repository-hosted Skynet CLI under the 2026-05-27 lock.",
+  "modelFloor": {
+    "rule": "The repository-hosted Skynet CLI permanently locks operational routing to Gemini 3.1 Pro Preview. Refuse alternate operational providers, silent downgrade to older Gemini, and Copilot/VSIX-first drift. Claude remains explicit advisor-review only.",
+    "floorOrdinal": "gemini-3.1-pro-preview",
+    "perLaneMinimum": {
+      "gemini": "gemini-3.1-pro-preview"
+    },
+    "forbidden": [
+      "gpt-default",
+      "gpt-5.4-mini",
+      "gpt-5.3-codex",
+      "gpt-5.2",
+      "gpt-4o-mini",
+      "codex-default",
+      "claude-default",
+      "claude-sonnet-default",
+      "claude-haiku-default",
+      "claude-opus-4.5-default",
+      "claude-3.5-haiku",
+      "claude-3.5-sonnet",
+      "gemini-2.5",
+      "gemini-2.0",
+      "gemini-pro",
+      "vsix-default",
+      "copilot-default"
+    ]
+  }
+}

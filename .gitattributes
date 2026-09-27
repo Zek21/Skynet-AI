@@ -1,0 +1,13 @@
+# Keep line endings stable regardless of each developer's Git defaults.
+* text=auto eol=lf
+
+# Binary assets and packaged extension artifacts should never be normalized.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.db binary
+*.sqlite binary
+*.vsix binary

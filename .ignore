@@ -1,0 +1,14 @@
+# ripgrep/rg precedence file (higher priority than .gitignore).
+#
+# The repo .gitignore is a block-everything security file ("*" then a tiny
+# whitelist) whose ONLY job is keeping secrets out of `git push`. It should not
+# blind local code search. Re-include the working tree for rg, then re-exclude
+# genuine junk so results stay useful.
+!**
+
+# keep true noise out of search results
+.git/
+node_modules/
+__pycache__/
+*.lance/
+*.exe

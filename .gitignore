@@ -1,7 +1,8 @@
 # ===================================================================
-# SECURITY-CRITICAL .gitignore — ScreenMemory is a RESEARCH project
-# Only README.md, requirements.txt, and paper checklist are public.
-# EVERYTHING else is internal implementation — NOT open source.
+# SECURITY-CRITICAL .gitignore -- Skynet AI is a CURATED-PUBLIC project
+# The public surface is declared in data/skynet_public_surface.json.
+# Source visibility in git status is not publication permission; the
+# pre-push boundary guard enforces the curated surface before any push.
 # ===================================================================
 
 # Block EVERYTHING by default
@@ -9,11 +10,28 @@
 
 # Whitelist ONLY public files
 !.gitignore
+!.gitattributes
+!.ignore
+!.rgignore
+!.geminiignore
 !README.md
+!CLAUDE.md
 !requirements.txt
+
 !data/
 data/*
 !data/paper_final_checklist.md
+!screenmemory-vsix/
+!screenmemory-vsix/src/
+!screenmemory-vsix/src/cli/
+!screenmemory-vsix/src/cli/cliBroker.ts
+!screenmemory-vsix/src/cli/cliBrokerCommon.ts
+!screenmemory-vsix/src/providers/
+!screenmemory-vsix/src/providers/geminiCdp.ts
+!screenmemory-vsix/dist/
+!screenmemory-vsix/dist/cli/
+!screenmemory-vsix/dist/cli/cliBroker.js
+!screenmemory-vsix/dist/cli/cliBroker.js.map
 
 # Block all directories explicitly (defense in depth)
 docs/
@@ -36,6 +54,7 @@ node_modules/
 *.ps1
 *.go
 *.exe
+*.exe~
 *.bak
 *.bak2
 *.html
@@ -49,18 +68,167 @@ node_modules/
 *.txt
 *.md
 
+# Explicit credential files (belt-and-suspenders -- also covered by data/ and *.txt rules)
+data/bus_api_key.txt
+data/*api_key*
+data/*secret*
+data/*token*
+data/*credential*
+
 # Re-whitelist the specific safe files (override blocks above)
 !.gitignore
+!.gitattributes
+!.ignore
+!.rgignore
+!.geminiignore
 !README.md
+!CLAUDE.md
 !requirements.txt
-!LICENSE
-!SECURITY.md
-!.github/
-.github/*
-!.github/FUNDING.yml
+
+# Skynet CLI central skill registry and router contract (no secrets).
 !docs/
 docs/*
-!docs/SEARCHABILITY.md
+!docs/SKYNET_CENTRALIZED_SKILLS_STANDARD.md
 !data/
 data/*
 !data/paper_final_checklist.md
+!data/skynet_cli_manifest.json
+!data/skynet_skill_registry.json
+!data/skynet_codex_lanes.json
+!data/skynet_system_registry.json
+!data/skynet_public_surface.json
+!tools/
+tools/*
+!tools/skynet_cli_manifest.py
+!tools/skynet_cli_router.py
+!tools/skynet_skills.py
+!tools/skynet_todo_memory.py
+!tools/skynet_session_mirror.py
+!tools/skynet_session_ledger_audit.py
+!tools/skynet_session_disposition_wave.py
+!tools/audit_local_video_cv2.py
+!tools/skynet_social_channel_audit.py
+!tools/socials_cdp_guard.py
+!tools/platform_research_orchestrator.py
+!tools/claude_cli_runtime.py
+!tools/skynet_model_catalog.py
+!tools/verify_post_sources.py
+!tools/skynet_support_reminder.py
+!tools/skynet_lane_runtime.py
+!tests/
+tests/*
+!tests/test_skynet_support_reminder.py
+!tests/test_codex_dual_lanes.py
+!screenmemory-vsix/src/skynet/
+screenmemory-vsix/src/skynet/*
+!screenmemory-vsix/src/skynet/supportReminder.ts
+!screenmemory-vsix/src/test/
+screenmemory-vsix/src/test/*
+!screenmemory-vsix/src/test/suite/
+screenmemory-vsix/src/test/suite/*
+!screenmemory-vsix/src/test/suite/supportReminder.test.ts
+!screenmemory-vsix/dist/skynet/
+screenmemory-vsix/dist/skynet/*
+!screenmemory-vsix/dist/skynet/supportReminder.d.ts
+!screenmemory-vsix/dist/skynet/supportReminder.js
+!screenmemory-vsix/dist/skynet/supportReminder.js.map
+!screenmemory-vsix/dist/test/
+screenmemory-vsix/dist/test/*
+!screenmemory-vsix/dist/test/suite/
+screenmemory-vsix/dist/test/suite/*
+!screenmemory-vsix/dist/test/suite/supportReminder.test.d.ts
+!screenmemory-vsix/dist/test/suite/supportReminder.test.js
+!screenmemory-vsix/dist/test/suite/supportReminder.test.js.map
+!SKYNET_SKILL_ROUTER_ADVISOR_CWD_RECOVERY_PROPOSAL_20260525.md
+!SKYNET_CLAUDE_ANTI_DRIFT_QUOTA_BLOCK_PROPOSAL_20260526.md
+
+# AR-040 advisor-safe Skynet orchestration OS exposure surfaces.
+!docs/SKYNET_ORCHESTRATION_OS_STANDARD.md
+!tools/skynet_orchestration_kernel.py
+!tools/skynet_cli.py
+!tools/skynet.py
+!tools/skynet_cli_v2.py
+!Skynet/
+Skynet/*
+!Skynet/cli/
+Skynet/cli/*
+!Skynet/cli/bin/
+Skynet/cli/bin/*
+!Skynet/cli/bin/skynet.js
+!Skynet/cli/package.json
+
+# ===================================================================
+# SOURCE-CODE TRACKABILITY (2026-07-02, fable-cleanup)
+# -------------------------------------------------------------------
+# The block-everything model above made actual SOURCE invisible to git:
+# 398 tools/*.py and 46 core/*.py existed on disk while only ~39 were
+# tracked, so agents editing core/tools/tests source saw nothing in
+# `git status` (the documented "blocks-everything gotcha").
+#
+# This section makes SOURCE CODE (.py in tools/core/tests, .go in
+# Skynet/) trackable at any depth for developer visibility only:
+#   * only the four source trees are descended (NOT node_modules,
+#     NOT data/, NOT vendored trees) -- see the `!<dir>/**/` lines;
+#   * ONLY source extensions (.py/.go) are re-included -- *.json,
+#     *.txt, *.key, *.pem, *.exe, *.png, *.db, secrets and all of
+#     data/ stay blocked by the rules above (last-match-wins keeps
+#     those globals in force for every non-.py/.go path);
+#   * artifact subtrees inside the source dirs are re-blocked:
+#     _archive_*, __pycache__, tools/**/dist, tools/**/node_modules.
+# Trackability does NOT make a path public. The curated public surface is
+# data/skynet_public_surface.json and tools/skynet_publish_boundary_guard.py
+# enforces it through the installed pre-push hook.
+# ===================================================================
+
+# Descend into the source trees (a dir excluded by `*` above is never
+# re-includable at file level unless the dir itself is re-included).
+!tools/
+!tools/**/
+!core/
+!core/**/
+!tests/
+!tests/**/
+!Skynet/
+!Skynet/**/
+
+# Re-include ONLY source-code files inside those trees.
+!tools/**/*.py
+!core/**/*.py
+!tests/**/*.py
+!Skynet/**/*.go
+
+# Re-block artifact / vendored / archive subtrees inside the source
+# trees (defense in depth -- these must never be tracked even though
+# they live under a descended source dir).
+tools/_archive_*/
+**/__pycache__/
+tools/**/dist/
+tools/**/node_modules/
+tools/chrome_bridge/dist/
+core/**/node_modules/
+tests/**/node_modules/
+
+# 2026-07-30 PII: the prospecting lane hardcodes REAL scraped third-party business
+# e-mail addresses (424 distinct across ~300 domains: DE/AT/CH/PL/PT/IL/AE), so the
+# `!tools/**/*.py` re-include above would republish GDPR-relevant personal data.
+# This subtree must never be tracked. See
+# data/runs/npm_publish_build_20260730/PUBLIC_REPO_PII_EXPOSURE_20260730.md
+# and gate it with tools/skynet_public_release_gate.py --gate before any push.
+tools/prospecting/
+
+# AR-1221: track only the safe Fable project command and its validation record.
+!.claude/
+.claude/*
+!.claude/commands/
+.claude/commands/*
+!.claude/commands/fable.md
+!SKYNET_FABLE_CLI_STALE_TEST_ASSERTIONS_PROPOSAL_20260703.md
+
+# @skynet/cli standalone public runtime bundle (Round 7).
+!Skynet/cli/sync-runtime.mjs
+!Skynet/cli/runtime/
+!Skynet/cli/runtime/*.py
+!Skynet/cli/runtime/manifest.json
+
+# Realtime mirror of E:esponsibilities (working copy; warehouse is the git transport)
+/responsibilities/

@@ -1,33 +1,69 @@
-# ScreenMemory Dependencies
+# Skynet AI Dependencies — pinned to exact versions (audited 2026-03-29)
+# signed: gamma
 
 # Core
-Pillow>=10.0
-numpy>=1.24
-psutil>=5.9
-requests>=2.31
+Pillow==12.1.1
+numpy==2.4.2
+blake3==1.0.9
+psutil==7.2.2
+requests==2.32.5
 
 # Screen capture (DXGI-backed on Windows)
-mss>=9.0
+mss==10.1.0
 
 # Database
-sqlite-vec>=0.1.1
-lancedb>=0.4
+sqlite-vec==0.1.6
+lancedb==0.29.2
+pyarrow==23.0.1
 
 # HTTP & Networking
-websockets>=12.0
-orjson>=3.9
+websockets==16.0
+websocket-client==1.9.0
+orjson==3.11.7
 
 # AWS (SES email, prospecting)
-boto3>=1.34
+boto3==1.42.62
 
 # Browser automation
-playwright>=1.40
+playwright==1.58.0
+playwright-stealth==2.0.2
 
 # Data parsing
-pydantic>=2.5
+pydantic==2.12.5
+beautifulsoup4==4.14.3
+python-docx==1.2.0
+openpyxl==3.1.5
+# Module-scope imports of tools/skynet_platform_research_package_gate.py: pypdf supplies
+# PdfReader, pypdfium2 renders the pages the render-pixel receipts are compared against.
+# Both were undeclared, so a venv built from this file could not import the gate at all
+# and its test suite failed at collection -- the Platform research package became
+# unverifiable on a clean rebuild while appearing to work on machines that happened to
+# have them. pypdfium2 was ALSO drifting: 5.12.0 on the system interpreter versus 5.6.0
+# in the project venv, so render receipts could differ by environment. Pinned here.
+pypdf==6.14.2
+pypdfium2==5.12.1
+# Formal Platform research-package PDF generation; kept in the same canonical venv
+# as python-docx, pypdf, pypdfium2, and Pillow so build and verify cannot drift.
+reportlab==5.0.1
 
 # Windows COM automation (UIA engine)
-comtypes>=1.1.14
+comtypes==1.4.16
+
+# Hardware-level input automation
+pyautogui==0.9.54
+pyperclip==1.11.0
+
+# OCR (RapidOCR — primary tier)
+rapidocr-onnxruntime==1.2.3
+onnxruntime==1.24.3
+opencv-contrib-python==4.10.0.84
+
+# Cryptography (used by tools/chrome_bridge and security modules)
+cryptography==46.0.5
+
+# Testing
+pytest==9.0.2
+pytest-timeout==2.4.0
 
 # VLM Analysis (via Ollama — install separately: https://ollama.ai)
 # No pip dependency — uses HTTP API
@@ -38,16 +74,8 @@ comtypes>=1.1.14
 # transformers>=4.40
 # torch-directml  # AMD GPU acceleration
 
-# Option B: ONNX Runtime (lighter, faster inference)
-# onnxruntime-directml>=1.17  # AMD GPU
-# onnxruntime>=1.17           # CPU only
-
 # Optional: Encryption
 # pysqlcipher3>=1.2  # SQLCipher bindings (requires sqlcipher lib)
 
-# Optional: Advanced OCR fallback
-# doctr[torch]>=0.9
-# paddleocr>=2.7
-
-# Hardware-level input automation
-pyautogui>=0.9
+# Optional: Advanced OCR fallback (heavy, install manually)
+# paddleocr==3.4.0
